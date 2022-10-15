@@ -26,14 +26,20 @@ int main(int argc, char *argv[])
 
     // Allocate a space for the filename output
     char *filename = malloc(8 * sizeof(BYTE));
-
+    if (filename == NULL)
+    {
+        fclose(input);
+        fclose(output);
+        return 1;
+    }
+    
     // Count number of images recovered
     int count = 0;
 
     // Declare a buffer
     BYTE buffer[512];
 
-    // Iterate through the input file 512 blocks at a time
+    // Iterate through the input file 512 bytes at a time
     while (fread(buffer, sizeof(BYTE), 512, input))
     {
         // Check if the first 4 bytes match the JPEG header
