@@ -29,7 +29,6 @@ int main(int argc, char *argv[])
     if (filename == NULL)
     {
         fclose(input);
-        fclose(output);
         return 1;
     }
     
